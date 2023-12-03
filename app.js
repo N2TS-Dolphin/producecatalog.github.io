@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+var paginate = require('handlebars-paginate');
+
+mongoose.connect('mongodb+srv://404foundbugs:404foundbugs@websitedatabase.746k9dj.mongodb.net/GA03?retryWrites=true&w=majority');
 
 
 var homeRouter = require('./routes/user/home/index');
