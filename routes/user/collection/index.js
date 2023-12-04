@@ -30,22 +30,25 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   let perPage = 9; // số lượng sản phẩm xuất hiện trên 1 page
-  let page = req.query.page || 1
+  let page = parseInt(req.query.page) || 1
 
   const products = await Product
     .find() // find tất cả các data
     .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
     .limit(perPage)
     .lean()
-  const count =  await Product.count
+    .exec();
+
+  const count =  await Product.countDocuments();
 
     res.render('user/collection/index', {
       products: products, // sản phẩm trên một page
       pagination: {
-        currentPage: page, 
+        current: page, 
+        page,
         pageCount: Math.ceil(count / perPage)
       },
-      productCount: count,
+      
       layout: 'user/layout.hbs'
     })
 })
