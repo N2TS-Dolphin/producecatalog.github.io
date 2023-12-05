@@ -4,6 +4,7 @@ const { Product, Review } = require('../../../model/productModel')
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
+
   const id = req.query.id.toString()
   const product = await Product.findById(id).lean()
   const reviews = await Review.find({product_id: product._id}).lean()
@@ -17,6 +18,10 @@ router.get('/', async function(req, res, next) {
   }
   product_rating = product_rating / reviews.length
   console.log(product_rating)
+
+  
+
+
 
   res.render('user/product/index', {
     layout: 'user/layout.hbs', 
