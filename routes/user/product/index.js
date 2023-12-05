@@ -8,7 +8,7 @@ router.get('/', async function(req, res, next) {
   const id = req.query.id.toString()
   const product = await Product.findById(id).lean()
   const reviews = await Review.find({product_id: product._id}).lean()
-  const relatedProduct = await Product.find({category: product.category}).limit(4).lean()
+  const relatedProduct = await Product.find({_id: {$ne: product._id}, category: product.category}).limit(4).lean()
 
   var product_rating = 0
   console.log(product_rating)
