@@ -6,35 +6,13 @@ var paginate = require('handlebars-paginate')
  
 Handlebars.registerHelper('paginate', paginate)
 
-Handlebars.registerHelper('ifFirstPage', function(currentPage, options){
-  return (currentPage == 1) ? options.fn(this): options.inverse(this)
-})
-
-Handlebars.registerHelper('ifLastPage', function(currentPage, pageCount, options){
-  return (currentPage == pageCount) ? options.fn(this): options.inverse(this)
-})
-
-Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
-  lvalue = parseFloat(lvalue);
-  rvalue = parseFloat(rvalue);
-      
-  return {
-      "+": lvalue + rvalue,
-      "-": lvalue - rvalue,
-      "*": lvalue * rvalue,
-      "/": lvalue / rvalue,
-      "%": lvalue % rvalue
-  }[operator];
-});
-
-/* GET home page. */
 router.get('/', async (req, res, next) => {
-  let perPage = 9; // số lượng sản phẩm xuất hiện trên 1 page
+  let perPage = 9;
   let page = parseInt(req.query.page) || 1
 
   const products = await Product
-    .find() // find tất cả các data
-    .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
+    .find()
+    .skip((perPage * page) - perPage)
     .limit(perPage)
     .lean()
     .exec();
