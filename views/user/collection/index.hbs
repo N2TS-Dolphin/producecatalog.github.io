@@ -175,7 +175,8 @@
               <p class="product-category">Category</p>
               <h3 class="product-name"><a href="#">product name goes here</a></h3>
               <h4 class="product-price">$980.00
-                <del class="product-old-price">$990.00</del></h4>
+                <del class="product-old-price">$990.00</del>
+              </h4>
             </div>
           </div>
 
@@ -187,7 +188,8 @@
               <p class="product-category">Category</p>
               <h3 class="product-name"><a href="#">product name goes here</a></h3>
               <h4 class="product-price">$980.00
-                <del class="product-old-price">$990.00</del></h4>
+                <del class="product-old-price">$990.00</del>
+              </h4>
             </div>
           </div>
 
@@ -199,7 +201,8 @@
               <p class="product-category">Category</p>
               <h3 class="product-name"><a href="#">product name goes here</a></h3>
               <h4 class="product-price">$980.00
-                <del class="product-old-price">$990.00</del></h4>
+                <del class="product-old-price">$990.00</del>
+              </h4>
             </div>
           </div>
         </div>
@@ -239,32 +242,32 @@
         <div class="row">
           <!-- product -->
           {{#each products}}
-					<div class="col-md-4 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="/img/{{this.product_img}}" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">{{this.category}}</p>
-								<h3 class="product-name"><a href="/product?id={{this._id}}">{{this.product_name}}</a></h3>
-								<h4 class="product-price">${{this.price}}</h4>
-								<div class="product-rating">
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-											class="tooltipp">add to wishlist</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span
-											class="tooltipp">add to compare</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
-											view</span></button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-							</div>
-						</div>
-					</div>
-					{{/each}}
+          <div class="col-md-4 col-xs-6">
+            <div class="product">
+              <div class="product-img">
+                <img src="/img/{{this.product_img}}" alt="">
+              </div>
+              <div class="product-body">
+                <p class="product-category">{{this.category}}</p>
+                <h3 class="product-name"><a href="/product?id={{this._id}}">{{this.product_name}}</a></h3>
+                <h4 class="product-price">${{this.price}}</h4>
+                <div class="product-rating">
+                </div>
+                <div class="product-btns">
+                  <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
+                      wishlist</span></button>
+                  <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to
+                      compare</span></button>
+                  <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
+                      view</span></button>
+                </div>
+              </div>
+              <div class="add-to-cart">
+                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+              </div>
+            </div>
+          </div>
+          {{/each}}
           <!-- /product -->
         </div>
         <!-- /store products -->
@@ -272,52 +275,28 @@
         <!-- store bottom filter -->
         <div class="store-filter clearfix">
           <span class="store-qty">Showing {{productCount}} products</span>
-          {{!-- <ul class="store-pagination">
+
+
+          <ul class="store-pagination">
             {{#paginate pagination type="first"}}
-                <li><a href="?page=1">First</a></li>
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?page={{n}}">First</a></li>
             {{/paginate}}
-
             {{#paginate pagination type="previous"}}
-              <li{{#ifFirstPage pagination.currentPage}} class="disabled"{{/ifFirstPage}}>
-              <a href="?page={{#math pagination.currentPage '-' 1}}{{/math}}"><i class="fa fa-angle-left"></i></a>
-              </li>
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?page={{n}}">Prev</a></li>
             {{/paginate}}
 
-            {{#paginate pagination type="middle" limit=1}}
-              <li><a href="?page={{n}}">{{n}}</a></li>
+            {{#paginate pagination type="middle" limit="5"}}
+            <li {{#if active}}class="active" {{/if}}><a href="?page={{n}}">{{n}}</a></li>
             {{/paginate}}
+
 
             {{#paginate pagination type="next"}}
-              <li{{#ifLastPage pagination.currentPage pagination.pageCount}} class="disabled"{{/ifLastPage}}>
-              <a href="?page={{#math pagination.currentPage '+' 1}}{{/math}}"><i class="fa fa-angle-right"></i></a>
-              </li>
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?page={{n}}">Next</a></li>
             {{/paginate}}
-
             {{#paginate pagination type="last"}}
-                <li><a href="?page={{pagination.pageCount}}">Last</a></li>
+            <li {{#if disabled}}class="disabled" {{/if}}><a href="?page={{n}}">Last</a></li>
             {{/paginate}}
-          </ul> --}}
-          
-           <ul class="store-pagination">
-    {{#paginate pagination type="first"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">First</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="previous"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">Prev</a></li>
-    {{/paginate}} 
-    
-    {{#paginate pagination type="middle" limit="5"}}
-      <li {{#if acive}}class="acive"{{/if}}><a href="?page={{n}}">{{n}}</a></li>
-    {{/paginate}}
-
-    
-    {{#paginate pagination type="next"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">Next</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="last"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">Last</a></li>
-    {{/paginate}}
-  </ul> 
+          </ul>
         </div>
         <!-- /store bottom filter -->
       </div>
