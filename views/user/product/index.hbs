@@ -239,10 +239,10 @@
                   <div id="reviews">
                     <ul class="reviews" style="overflow: hidden; overflow-y: scroll; max-hieght: 500px;">
                       {{#each reviews}}
-                      <li style="border-bottom: black 1px solid;">
+                      <li style="border-bottom: black 1px solid; padding-bottom: 10px">
                         <div class="review-heading">
                           <h5 class="name">{{this.name}}</h5>
-                          <p class="date">27 DEC 2018, 8:0 PM</p>
+                          <p class="date">{{this.date}}</p>
                           <div class="review-rating">
                             <span>{{this.rating}}</span>
                             <i class="fa fa-star"></i>

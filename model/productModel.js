@@ -14,7 +14,8 @@ const reviewSchema = new mongoose.Schema({
     product_id: String,
     name: String,
     rating: Number,
-    content: String
+    content: String,
+    date: String
 }, {collection: 'reviews'})
 
 const Product = mongoose.model('product', productSchema, 'product')
